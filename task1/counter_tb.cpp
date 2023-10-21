@@ -4,7 +4,7 @@
 #include <iostream>
 
 int main(int argc, char **argv, char **env){
-    int i, clk, count, pause;
+    int i, clk;
 
     Verilated::commandArgs(argc, argv);
 
@@ -22,9 +22,7 @@ int main(int argc, char **argv, char **env){
     top->rst = 1;
     top->en = 0;
 
-    // challenge 1
-    count = 0;
-    pause = 0;
+    int pause = 0;
 
     // run simulation for many clock cycles
     // 300 clock cyles
@@ -42,26 +40,21 @@ int main(int argc, char **argv, char **env){
             top->eval();           // evaluates the output based on the input
         }
 
-        std::cout << "CLK " << i << ": " << count << " | en = " << (int)top->en << std::endl;
+        // original test
+        // top->en = (i > 4);
+        // top->rst = (i < 2) | (i == 15);
+        top->rst = (i<2);
 
-        // challenge 1
-        if(top->en == 1 && i > 6) {
-            count = (count + 1) % 256;
+        if((int)top->count == 9 && pause < 2){
+            top->en = 0;
+            pause++;
         }
-        else if(pause == 2){
-            count++;
+        else if(i > 4){
+            top->en = 1;
             pause = 0;
         }
-        else pause++;
-        
 
-        // original test
-        // top->rst = (i < 2) | (i == 15);
-        // top->en = (i > 4);
 
-        // challenge 1
-        top->en = (i > 4) && (count != 10);
-        top->rst = (i < 2) || (pause == 0 && count == 0);
 
 
         if(Verilated::gotFinish()) exit(0);
