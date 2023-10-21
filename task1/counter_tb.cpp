@@ -41,18 +41,18 @@ int main(int argc, char **argv, char **env){
         }
 
         // original test
-        // top->en = (i > 4);
-        // top->rst = (i < 2) | (i == 15);
-        top->rst = (i<2);
+        top->en = (i > 4);
+        top->rst = (i < 2) | (i == 15);
+        // top->rst = (i<2);
 
-        if((int)top->count == 9 && pause < 2){
-            top->en = 0;
-            pause++;
-        }
-        else if(i > 4){
-            top->en = 1;
-            pause = 0;
-        }
+        // if((int)top->count == 9 && pause < 2){
+        //     top->en = 0;
+        //     pause++;
+        // }
+        // else if(i > 4){
+        //     top->en = 1;
+        //     pause = 0;
+        // }
 
 
 
