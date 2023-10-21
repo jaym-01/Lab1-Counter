@@ -8,7 +8,9 @@ module counter #(
     output logic [WIDTH-1:0] count //count output
 );
 
-always_ff @ (posedge clk)
+// when asynchronous -> it changes before the rising edge of the clock
+// but does not change when the rst changes -> since it is non blocking
+always_ff @ (posedge clk, posedge rst)
     if(rst) count <= {WIDTH{1'b0}};  // when rst = 1 -> cout = 0000_0000
     else count <= count + {{WIDTH-1{1'b0}}, en}; // does count + 1
 
