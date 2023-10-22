@@ -12,7 +12,7 @@ module counter #(
 // but does not change when the rst changes -> since it is non blocking
 always_ff @ (posedge clk)
     if(rst) count <= {WIDTH{1'b0}};  // when rst = 1 -> cout = 0000_0000
-    else if(en) count <= count + {{WIDTH-1{1'b0}}, 1}; // does count + 1 -> when en = 1
-    else count <= count - {{WIDTH-1{1'b0}}, 1};
+    else if(en) count <= count + {{WIDTH-1{1'b0}}, 1'b1}; // does count + 1 -> when en = 1
+    else count <= count - {{WIDTH-1{1'b0}}, 1'b1};
 
 endmodule
