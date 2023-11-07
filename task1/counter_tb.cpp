@@ -24,7 +24,6 @@ int main(int argc, char **argv, char **env){
 
     // run simulation for many clock cycles
     // 300 clock cyles
-    // each clock cycle has T = 2ps
     // takes 600ps to run
     for(i = 0; i < 300; i++) {
 
