@@ -12,6 +12,7 @@ VL_ATTR_COLD void Vcounter___024root___eval_initial(Vcounter___024root* vlSelf) 
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcounter___024root___eval_initial\n"); );
     // Body
     vlSelf->__Vclklast__TOP__clk = vlSelf->clk;
+    vlSelf->__Vclklast__TOP__rst = vlSelf->rst;
 }
 
 VL_ATTR_COLD void Vcounter___024root___eval_settle(Vcounter___024root* vlSelf) {

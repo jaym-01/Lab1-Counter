@@ -22,6 +22,8 @@ int main(int argc, char **argv, char **env){
     top->rst = 1;
     top->en = 0;
 
+    int pause = 0;
+
     // run simulation for many clock cycles
     // 300 clock cyles
     // each clock cycle has T = 2ps
@@ -37,8 +39,19 @@ int main(int argc, char **argv, char **env){
             top->clk = !top->clk;  // toggles the clock
             top->eval();           // evaluates the output based on the input
         }
+
         top->en = (i > 4);
-        top->rst = (i < 2) | (i == 15);
+        top->rst = (i < 2);
+
+        if((int)top->count == 9 && pause < 2){
+            top->en = 0;
+            pause++;
+        }
+        else if(i > 4){
+            top->en = 1;
+            pause = 0;
+        }
+
         if(Verilated::gotFinish()) exit(0);
 
     }
