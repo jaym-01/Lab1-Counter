@@ -22,3 +22,9 @@ When en = 1 -> it adds 1 to the count value.
 Otherwise if en = 0, it takes away 1.
 
 The en value is controlled by the flag: `top->en = vbdFlag();`
+
+The signals show that when en = 0, it counts down as expected:
+![Alt text](image.png)
+
+Then 1 clock cycle after en = 1, it counts up, since the en value taken is the value of en before the rising edge:
+![Alt text](image-1.png)
